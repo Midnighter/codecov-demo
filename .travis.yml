@@ -22,11 +22,16 @@ matrix:
 install:
   - pip install --upgrade pip setuptools wheel tox tox-travis
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
   - tox -- --cov-report=xml --cov-report=term tests
 
-after_success:
-  - bash <(curl -f https://codecov.io/bash)
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 notifications:
   email:

@@ -1,2 +1,0 @@
-fixes:
-  - ".tox/py*/lib/python*/site-packages/division.py::src/division.py"
