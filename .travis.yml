@@ -24,6 +24,7 @@ install:
 
 script:
   - tox -- --cov-report=xml --cov-report=term tests
+  - head -n 20 coverage.xml
 
 after_success:
   - bash <(curl -f https://codecov.io/bash)
